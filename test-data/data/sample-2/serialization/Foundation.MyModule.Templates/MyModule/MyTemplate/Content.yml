@@ -1,0 +1,18 @@
+﻿---
+ID: "c239df55-51aa-4cd1-9c52-21deb51147e9"
+Parent: "b716d128-a28e-4093-a917-d12a1a639ae1"
+Template: "e269fbb5-3750-427a-9149-7aa950b49301"
+Path: /sitecore/templates/testYo/Foundation/MyModule/MyTemplate/Content
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20170927T042614Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\admin
