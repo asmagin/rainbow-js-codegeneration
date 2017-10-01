@@ -4,6 +4,7 @@
 import { builder } from './builder';
 import { IOptions } from './models';
 import { reader } from './reader';
+import { writer } from './writer';
 
 export const generator = async (options: IOptions): Promise<string>  => {
   // Get Files based on Glob pattern provided
@@ -11,10 +12,9 @@ export const generator = async (options: IOptions): Promise<string>  => {
 
   // find all templates, fields, and sections in found yml files
   const templates = builder(files, options);
-  // build full full
 
-  // tslint:disable-next-line:no-console
-  console.log(JSON.stringify(templates, null, ' '));
+  // build full full
+  await writer(templates, options);
 
   return 'done';
 };

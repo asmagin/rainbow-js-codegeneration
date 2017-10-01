@@ -37,6 +37,18 @@ describe('Reader', () => {
     expect(Object.keys(files)).toHaveLength(6);
   });
 
+  test('Find .yml files based on an array of patterns (alternative cwd & template)', async () => {
+    const files = await reader({
+      cwd: join(dataPath, 'serialization'),
+      pattern: '**/*.Templates/**/*.yml',
+    });
+
+    expect(typeof (files)).not.toBe('undefined');
+    expect(typeof (files)).not.toBe('null');
+    expect(typeof (files)).toBeTruthy();
+    expect(Object.keys(files)).toHaveLength(5);
+  });
+
   test('Read content of .yml', async () => {
     const files = await reader({
       cwd: dataPath,
