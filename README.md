@@ -7,7 +7,49 @@
 
 # Rainbow JS CodeGeneration
 
-TODO
+## Installation
+
+```
+npm i rainbow-js-codegeneration --saveDev
+```
+
+## API
+---
+
+The module exposes one method `generate` that accepts `options` object as a parameter
+
+
+``` typescript
+import { generator, IOptions } from 'rainbow-js-codegeneration';
+//...
+const options: IOptions = {
+  cwd: path,
+  pattern,
+  generateFile: true,
+  targetPath: './folder/Models.Generated.cs',
+};
+
+const result = await generator(options);
+//...
+```
+### generate(options)
+This method search for files based on pattern provided, read them and construct templates objects. Once processing is done it complies `Handlebars` template and generates C# code.
+
+#### options:
+- **`cwd`**: `string` *(required)* - defines a root directory for a `glob` search;
+- **`pattern`**: `string|string[]` *(required)* - defines a pattern for  the `glob` search;
+- **`generateFile`**: `boolean` - control, if a file will be written to a filesystem;
+- **`targetPath`**: `string` - defines a location of a target file for code generation;
+- **`generationTemplate`**: `string` *(default: standard template for `GlassMapper`)* - content of a `Handlebars` templates that will process templates info.;
+- **`Using`**: `string[]` - a list of `using` that should be rendered in the header of the file;
+- **`ToClass`**: `function(name:string)` *(default: PascalCase class name)* - overrides a logic that generates class names;
+- **`ToInterface`**: `function(name:string)` *(default: class name prepended with 'I')*- overrides a logic that generates interface names;
+- **`ToNamespace`**: `function(path:string)` *(default: section of a path excluding `/sitecore/templates` and template name)* - overrides a logic that generates namespace names;
+- **`ToProperty`**: `function(name:string)` *(default: PascalCase property name)*- overrides a logic that generates propertie names from field names;
+- **`ToPropertyType`**: `function(type:string, id:string)` *(default: simple mapping to available types in GlassMapper)* - extends logic related to mapping of a fields to C# tpe of a property. If return `undefined` will fall back to default.
+
+### context
+TODO: describe `Handlebars` context and model that is passed
 
 ## Available scripts
 
