@@ -14,7 +14,5 @@ export const generator = async (options: IOptions): Promise<string>  => {
   const templates = builder(files, options);
 
   // build full full
-  await writer(templates, options);
-
-  return 'done';
+  return await writer(templates, options);
 };

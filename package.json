@@ -39,6 +39,7 @@
   "dependencies": {
     "fs-extra": "^4.0.2",
     "glob": "^7.1.2",
+    "handlebars": "^4.0.10",
     "jest-cli": "^21.2.1",
     "js-yaml": "^3.10.0",
     "tslib": "~1.7.1"

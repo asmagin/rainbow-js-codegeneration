@@ -29,34 +29,33 @@ export namespace Sitecore {
   }
 
   export namespace CodeGeneration {
-    export interface IFieldBase {
+    export interface IField {
+      // Sitecore
       ID: string;
       Name: string;
       Type: string;
+
+      // Code Generation
+      AsProperty: string;
+      AsPropertyType: string;
     }
 
-    export interface ITemplateBase {
+    export interface ITemplate {
+      // Sitecore
       ID: string;
       Name: string;
       Path: string;
-      Fields: IMap<IField>;
+      Fields: IField[];
       BaseTemplates: ITemplate[];
-    }
-  }
 
-  export namespace CodeGeneration {
-    export interface IField extends IFieldBase {
-      PropertyName: string;
-    }
+      // Code Generation
+      AsNamespace: string;
+      AsClass: string;
+      AsInterface: string;
 
-    export interface ITemplate extends ITemplateBase {
+      // internal calculations
       OwnFields: IMap<IField>;
       InheritedFields: IMap<IField>;
-
-      Namespace: string;
-
-      ClassName: string;
-      InterfaceName: string;
     }
   }
 }
@@ -68,7 +67,17 @@ export interface IMap<T> {
 export interface IOptions {
   cwd: string;
   pattern: string | string[];
+
+  generateFile: boolean;
+  targetPath: string;
+  generationTemplate?: string;
+
+  Using?: string[];
+
   ToClass?: Function;
   ToInterface?: Function;
   ToNamespace?: Function;
+
+  ToProperty?: Function;
+  ToPropertyType?: Function;
 }
