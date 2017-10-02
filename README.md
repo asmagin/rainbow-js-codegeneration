@@ -51,6 +51,21 @@ This method search for files based on pattern provided, read them and construct 
 ### context
 TODO: describe `Handlebars` context and model that is passed
 
+## Gulp integration
+The library provides a Gulp plugin. The plugin will generate code file for each `configuration` file detected. See example below:  
+
+``` js
+// other imports 
+var codeGen = require('d:/.projects/oss/rainbow-js-codegeneration').generationPlugin;
+
+// ...
+
+gulp.task("Generate-Code", function () {
+  gulp.src('**/codegeneration.config.js', { base: "./" })
+    .pipe(codeGen())
+});
+```
+
 ## Available scripts
 
 + `clean` - remove coverage data, Jest cache and transpiled files,
