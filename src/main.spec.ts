@@ -18,7 +18,7 @@ describe('Public API', () => {
       cwd: dataPath,
       pattern,
       generateFile: true,
-      targetPath: './build/Models.main-spec.cs',
+      targetPath: join(__dirname, '..', 'tmp.models.main-spec.cs'),
     };
 
     const result = await generator(options);

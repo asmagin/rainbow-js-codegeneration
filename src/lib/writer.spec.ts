@@ -1,3 +1,4 @@
+import { join } from 'path';
 import { items as simpleData } from './../mock/sample-2';
 import { builder } from './builder';
 import { IMap, IOptions, Sitecore } from './models';
@@ -28,7 +29,7 @@ describe('Writer', () => {
         'TestYo.Foundation.MyModule',
       ],
       generateFile: true,
-      targetPath: './build/Models.writer-spec.cs',
+      targetPath: join(__dirname, '..', '..', 'tmp.models.writer-spec.cs'),
     };
 
     const items: IMap<Sitecore.Rainbow.IItem> = simpleData.reduce(convertDataToMap, {});

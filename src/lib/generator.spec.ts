@@ -19,7 +19,7 @@ describe('Generator', () => {
       cwd: dataPath,
       pattern,
       generateFile: true,
-      targetPath: './build/Models.generator-spec.cs',
+      targetPath: join(__dirname, '..', '..', 'tmp.models.generator-spec.cs'),
     };
 
     const result = await generator(options);
