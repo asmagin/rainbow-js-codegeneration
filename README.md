@@ -40,7 +40,7 @@ This method search for files based on pattern provided, read them and construct 
 - **`pattern`**: `string|string[]` *(required)* - defines a pattern for  the `glob` search;
 - **`generateFile`**: `boolean` - control, if a file will be written to a filesystem;
 - **`targetPath`**: `string` - defines a location of a target file for code generation;
-- **`generationTemplate`**: `string` *(default: standard template for `GlassMapper`)* - content of a `Handlebars` templates that will process templates info.;
+- **`generationTemplatePath`**: `string` *(default: standard template for `GlassMapper` embedded)* -  path to a `Handlebars` template file that will process templates info.;
 - **`Using`**: `string[]` - a list of `using` that should be rendered in the header of the file;
 - **`ToClass`**: `function(name:string)` *(default: PascalCase class name)* - overrides a logic that generates class names;
 - **`ToInterface`**: `function(name:string)` *(default: class name prepended with 'I')*- overrides a logic that generates interface names;

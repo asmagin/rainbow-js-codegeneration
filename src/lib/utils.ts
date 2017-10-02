@@ -5,7 +5,7 @@ const toPascalCase = (str: string): string => {
     .replace(/(?:^\w|[A-Z]|\b\w)/g, (match) => {
       return match.toUpperCase();
     })
-    .replace(/[^a-zA-Z\d]+/, '');
+    .replace(/[^a-zA-Z\d]+/g, '');
 };
 
 export const toClass = (name: string): string => {
@@ -97,6 +97,6 @@ export const toPropertyType = (name: string): string => {
     case 'name value list':
       return 'System.Collections.Specialized.NameValueCollection';
     default:
-      return 'object /* UNKNOWN */';
+      return `object /* UNKNOWN TYPE: ${name} */`;
   }
 };

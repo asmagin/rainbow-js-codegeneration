@@ -28,8 +28,6 @@ export const reader = async (options: IOptions): Promise<IMap<Sitecore.Rainbow.I
         (err, matches) => {
           if (err || !matches) {
             return reject(err);
-          } else if (matches.length === 0) {
-            return reject(new Error(`No files were found\n ${JSON.stringify(options, null, '  ')}`));
           } else {
             return resolve(matches);
           }
@@ -37,7 +35,7 @@ export const reader = async (options: IOptions): Promise<IMap<Sitecore.Rainbow.I
     },
   );
 
-  const items: IMap<Sitecore.Rainbow.IItem> = { };
+  const items: IMap<Sitecore.Rainbow.IItem> = {};
 
   paths.reduce(
     (data, path) => {
