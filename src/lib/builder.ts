@@ -33,9 +33,9 @@ const buildTemplates = (
         Path: items[id].Path,
         Name: name,
 
-        ClassName: toClass(name),
-        InterfaceName: toInterface(name),
-        Namespace: toNamespace(items[id].Path),
+        AsClass: toClass(name),
+        AsInterface: toInterface(name),
+        AsNamespace: toNamespace(items[id].Path),
       };
     })
     .reduce((templates, template) => {
@@ -49,11 +49,17 @@ const buildTemplates = (
 const buildTemplateFields = (
   templates: IMap<Sitecore.CodeGeneration.ITemplate>,
   items: IMap<Sitecore.Rainbow.IItem>,
-  toPropertyFunc?: Function) => {
+  toPropertyFunc?: Function,
+  toPropertyTypeFunc?: Function) => {
 
   const toProperty = toPropertyFunc !== undefined && toPropertyFunc instanceof Function
     ? toPropertyFunc
     : utils.toProperty;
+
+  const toPropertyType = toPropertyTypeFunc !== undefined && toPropertyTypeFunc instanceof Function
+    // tslint:disable-next-line:strict-boolean-expressions
+    ? (name, id?) => toPropertyTypeFunc(name, id) || utils.toPropertyType(name)
+    : utils.toPropertyType;
 
   Object.keys(templates)
     .map(id => templates[id])
@@ -63,16 +69,17 @@ const buildTemplateFields = (
         .map(id => items[id])
         .reduce((fields, item) => {
           const name = utils.getNameFromPath(item.Path);
+          const fieldType = item.SharedFields.find(sharedField => sharedField.Hint === 'Type').Value;
 
           fields[name] = <Sitecore.CodeGeneration.IField>{
             ID: item.ID,
             Name: name,
-            PropertyName: toProperty(name),
-            Type: item.SharedFields.find(sharedField => sharedField.Hint === 'Type').Value,
+            AsProperty: toProperty(name),
+            AsPropertyType: toPropertyType(fieldType, item.ID),
+            Type: fieldType,
           };
 
           return fields;
-          // tslint:disable-next-line:align
         }, {});
     });
 
@@ -130,7 +137,8 @@ const buildTemplatesInheritedFields = (templates: IMap<Sitecore.CodeGeneration.I
   Object.keys(templates)
     .map(id => templates[id])
     .map((template) => {
-      template.Fields = { ...template.InheritedFields, ...template.OwnFields };
+      const fields = { ...template.InheritedFields, ...template.OwnFields };
+      template.Fields = Object.keys(fields).map(id => fields[id]);
     });
 
   return templates;
@@ -139,16 +147,16 @@ const buildTemplatesInheritedFields = (templates: IMap<Sitecore.CodeGeneration.I
 export const builder = (items: IMap<Sitecore.Rainbow.IItem>, options: IOptions): IMap<Sitecore.CodeGeneration.ITemplate> => {
   let results: IMap<Sitecore.CodeGeneration.ITemplate> = {};
 
-  // do something with results
+  // build templates
   results = buildTemplates(items, options.ToClass, options.ToInterface, options.ToNamespace);
 
   // add own fields
-  results = buildTemplateFields(results, items);
+  results = buildTemplateFields(results, items, options.ToProperty, options.ToPropertyType);
 
   // add base templates
   results = buildBaseTemplates(results, items);
 
-  // add own fields
+  // add inherited fields
   results = buildTemplatesInheritedFields(results);
 
   return results;

@@ -17,6 +17,8 @@ describe('Reader', () => {
     const files = await reader({
       cwd: dataPath,
       pattern,
+      generateFile: false,
+      targetPath: '',
     });
 
     expect(typeof (files)).not.toBe('undefined');
@@ -29,6 +31,8 @@ describe('Reader', () => {
     const files = await reader({
       cwd: dataPath,
       pattern: [pattern, '**/serialization/*.Settings/**/*.yml'],
+      generateFile: false,
+      targetPath: '',
     });
 
     expect(typeof (files)).not.toBe('undefined');
@@ -37,10 +41,26 @@ describe('Reader', () => {
     expect(Object.keys(files)).toHaveLength(6);
   });
 
+  test('Find .yml files based on an array of patterns (alternative cwd & template)', async () => {
+    const files = await reader({
+      cwd: join(dataPath, 'serialization'),
+      pattern: '**/*.Templates/**/*.yml',
+      generateFile: false,
+      targetPath: '',
+    });
+
+    expect(typeof (files)).not.toBe('undefined');
+    expect(typeof (files)).not.toBe('null');
+    expect(typeof (files)).toBeTruthy();
+    expect(Object.keys(files)).toHaveLength(5);
+  });
+
   test('Read content of .yml', async () => {
     const files = await reader({
       cwd: dataPath,
       pattern: [pattern, '**/serialization/*.Settings/**/*.yml'],
+      generateFile: false,
+      targetPath: '',
     });
 
     expect(files['969b1f2e-b070-460f-9770-3d40b94a2119']).toBeTruthy();

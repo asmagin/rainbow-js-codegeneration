@@ -1,6 +1,10 @@
-// import { generator } from './main';
+import { join } from 'path';
+import { generator, IOptions } from './main';
 
-describe('greeter function', () => {
+describe('Public API', () => {
+  const dataPath = join('test-data', 'data', 'sample-1');
+  const pattern = '**/serialization/*.Templates/**/*.yml';
+
   // Read more about fake timers: http://facebook.github.io/jest/docs/en/timer-mocks.html#content
   jest.useFakeTimers();
 
@@ -9,9 +13,16 @@ describe('greeter function', () => {
     // do nothing
   });
 
-  // Assert greeter result
-  test('true == true', () => {
-    expect(true).toBe(true);
-  });
+  test('Generator executes without errors', async () => {
+    const options: IOptions = {
+      cwd: dataPath,
+      pattern,
+      generateFile: true,
+      targetPath: join(__dirname, '..', 'tmp.models.main-spec.cs'),
+    };
 
+    const result = await generator(options);
+
+    expect(result).toEqual(expect.stringMatching(/\[SitecoreType\(TemplateId="b716d128-a28e-4093-a917-d12a1a639ae1"\)\]/));
+  });
 });

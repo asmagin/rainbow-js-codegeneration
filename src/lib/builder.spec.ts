@@ -6,6 +6,8 @@ import { IMap, IOptions, Sitecore } from './models';
 const options: IOptions = {
   cwd: '', // not used
   pattern: '', // not used
+  generateFile: false,
+  targetPath: '',
 };
 
 const simpleTemplateId = 'b716d128-a28e-4093-a917-d12a1a639ae1';
@@ -53,11 +55,10 @@ describe('Builder', () => {
 
   test('(Simple) Should return Text field', () => {
     const items: IMap<Sitecore.Rainbow.IItem> = simpleData.reduce(convertDataToMap, {});
-    const fieldName = 'Text';
 
     const result = builder(items, options);
 
-    expect(result[simpleTemplateId].Fields[fieldName]).not.toBeUndefined();
+    expect(result[simpleTemplateId].Fields).toHaveLength(2);
   });
 
   test('Should return complex template', () => {
@@ -98,11 +99,11 @@ describe('Builder', () => {
 
   test('Should return property name in for a filed in a complex template', () => {
     const items: IMap<Sitecore.Rainbow.IItem> = complexData.reduce(convertDataToMap, {});
-    const testField = 'List Field';
 
     const result = builder(items, options);
 
-    expect(result[complexTemplateId].Fields[testField].PropertyName).toBe('ListField');
+    expect(result[complexTemplateId].Fields).toHaveLength(5);
+    expect(result[complexTemplateId].Fields[1].AsProperty).toBe('ListField');
   });
 
   test('(Simple) custom Class Name', () => {
@@ -113,7 +114,7 @@ describe('Builder', () => {
       ToClass: () => 'SomeValue',
     });
 
-    expect(result[simpleTemplateId].ClassName).toBe('SomeValue');
+    expect(result[simpleTemplateId].AsClass).toBe('SomeValue');
   });
 
   test('(Simple) custom Interface Name', () => {
@@ -124,7 +125,7 @@ describe('Builder', () => {
       ToInterface: () => 'SomeValue',
     });
 
-    expect(result[simpleTemplateId].InterfaceName).toBe('SomeValue');
+    expect(result[simpleTemplateId].AsInterface).toBe('SomeValue');
   });
 
   test('(Simple) custom Interface Name', () => {
@@ -135,6 +136,6 @@ describe('Builder', () => {
       ToNamespace: () => 'SomeValue',
     });
 
-    expect(result[simpleTemplateId].Namespace).toBe('SomeValue');
+    expect(result[simpleTemplateId].AsNamespace).toBe('SomeValue');
   });
 });
