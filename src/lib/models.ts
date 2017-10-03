@@ -70,7 +70,7 @@ export interface IOptions {
 
   generateFile: boolean;
   targetPath: string;
-  generationTemplate?: string;
+  generationTemplatePath?: string;
 
   Using?: string[];
 
