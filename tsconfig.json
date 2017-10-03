@@ -20,7 +20,10 @@
     "declaration": true
   },
   "include": [
-    "src/**/*",
-    "__tests__/**/*"
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "src/**/*.spec.ts"
   ]
 }

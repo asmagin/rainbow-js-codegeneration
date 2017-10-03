@@ -1,0 +1,14 @@
+# EXCLUDE ALL
+*
+
+# INCLUDE JS files in a build folder
+!build/src/main.js
+!build/src/lib/**/*
+
+# EXCLUDE jest specs
+*.spec.*
+
+# INCLUDE 
+!LICENSE
+!package.json
+!README.md

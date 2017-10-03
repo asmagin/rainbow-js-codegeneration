@@ -26,9 +26,9 @@
     "test": "npm run test-only",
     "test-only": "jest --coverage",
     "test:watch": "jest --watch",
-    "prepare": "npm run build && npm run test"
+    "prepublishOnly": "npm run build"
   },
-  "author": "Alex Smagin",
+  "author": "Alex Smagin <me@asmagin.com>",
   "license": "MIT",
   "repository": {
     "type": "git",
