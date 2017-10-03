@@ -113,7 +113,7 @@ The library provides a Gulp plugin. The plugin will generate code file for each 
 
 ``` js
 // other imports
-var codeGen = require('d:/.projects/oss/rainbow-js-codegeneration').generationPlugin;
+var codeGen = require('rainbow-js-codegeneration').generationPlugin;
 
 // You can make module save a file by setting "generateFile" to "true" and defining "targetPath"
 gulp.task("Generate-Code", function () {
@@ -140,7 +140,7 @@ var path = require("path");
 
 module.exports = {
   cwd: path.join(__dirname, '..'),
-  pattern: '**/serialization/Foundation.*.Templates/**/*.yml',
+  pattern: '**/serialization/*.Templates/**/*.yml',
   Using: [ 'System.CodeDom.Compiler' ],
   generationTemplatePath: path.join(__dirname, 'codegeneration.tmpl'),
 }

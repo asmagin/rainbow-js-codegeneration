@@ -1,14 +1,19 @@
-# EXCLUDE ALL
-*
-
-# INCLUDE JS files in a build folder
-!build/src/main.js
-!build/src/lib/**/*
-
-# EXCLUDE jest specs
-*.spec.*
-
-# INCLUDE 
-!LICENSE
-!package.json
-!README.md
+.git/
+.vscode/
+!build/
+build/src/mock/
+build/**/*.spec.*
+coverage/
+node_modules/
+src/
+test-data/
+.editorconfig
+.gitignore
+.npmignore
+.travis.yml
+jest.config.js
+preprocessor.js
+package-lock.json
+*.tgz
+tmp.*.cs
+ts*.json

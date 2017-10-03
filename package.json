@@ -1,7 +1,15 @@
 {
   "name": "rainbow-js-codegeneration",
-  "version": "0.1.0",
-  "description": "JavaScript based code-generation for Rainbow synchronization format of Sitecore items",
+  "version": "0.1.12",
+  "description": "JavaScript based code-generation for Rainbow serialization format of Sitecore items",
+  "keywords": [
+    "sitecore",
+    "rainbow",
+    "generate",
+    "unicorn",
+    "codegeneration",
+    "code generation"
+  ],
   "engineStrict": true,
   "main": "./build/src/main.js",
   "engines": {
@@ -25,8 +33,7 @@
     "pretest": "npm run lint",
     "test": "npm run test-only",
     "test-only": "jest --coverage",
-    "test:watch": "jest --watch",
-    "prepublishOnly": "npm run build"
+    "test:watch": "jest --watch"
   },
   "author": "Alex Smagin <me@asmagin.com>",
   "license": "MIT",
