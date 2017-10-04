@@ -28,8 +28,6 @@ describe('Writer', () => {
         'Epam.Sc.EngX.CodeGeneration.Domain',
         'TestYo.Foundation.MyModule',
       ],
-      generateFile: true,
-      targetPath: join(__dirname, '..', '..', 'tmp', 'tmp.models.writer-spec.cs'),
     };
 
     const items: IMap<Sitecore.Rainbow.IItem> = simpleData.reduce(convertDataToMap, {});

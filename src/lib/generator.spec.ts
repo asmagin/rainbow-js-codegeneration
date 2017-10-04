@@ -18,8 +18,6 @@ describe('Generator', () => {
     const options: IOptions = {
       cwd: dataPath,
       pattern,
-      generateFile: true,
-      targetPath: join(__dirname, '..', '..', 'tmp', 'tmp.models.generator-spec.cs'),
     };
 
     const result = generator(options);

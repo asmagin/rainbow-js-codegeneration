@@ -17,8 +17,6 @@ describe('Public API', () => {
     const options: IOptions = {
       cwd: dataPath,
       pattern,
-      generateFile: true,
-      targetPath: join(__dirname, '..', 'tmp', 'tmp.models.main-spec.cs'),
     };
 
     const result = generator(options);

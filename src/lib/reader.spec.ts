@@ -17,8 +17,6 @@ describe('Reader', () => {
     const files = reader({
       cwd: dataPath,
       pattern,
-      generateFile: false,
-      targetPath: '',
     });
 
     expect(typeof (files)).not.toBe('undefined');
@@ -31,8 +29,6 @@ describe('Reader', () => {
     const files = reader({
       cwd: dataPath,
       pattern: [pattern, '**/serialization/*.Settings/**/*.yml'],
-      generateFile: false,
-      targetPath: '',
     });
 
     expect(typeof (files)).not.toBe('undefined');
@@ -45,8 +41,6 @@ describe('Reader', () => {
     const files = reader({
       cwd: join(dataPath, 'serialization'),
       pattern: '**/*.Templates/**/*.yml',
-      generateFile: false,
-      targetPath: '',
     });
 
     expect(typeof (files)).not.toBe('undefined');
@@ -59,8 +53,6 @@ describe('Reader', () => {
     const files = reader({
       cwd: dataPath,
       pattern: [pattern, '**/serialization/*.Settings/**/*.yml'],
-      generateFile: false,
-      targetPath: '',
     });
 
     expect(files['969b1f2e-b070-460f-9770-3d40b94a2119']).toBeTruthy();

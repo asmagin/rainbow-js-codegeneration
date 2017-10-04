@@ -6,8 +6,6 @@ import { IMap, IOptions, Sitecore } from './models';
 const options: IOptions = {
   cwd: '', // not used
   pattern: '', // not used
-  generateFile: false,
-  targetPath: '',
 };
 
 const simpleTemplateId = 'b716d128-a28e-4093-a917-d12a1a639ae1';
