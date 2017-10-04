@@ -1,5 +1,5 @@
 import { join } from 'path';
-import { items as simpleData } from './../mock/sample-2';
+import { items as simpleData } from '../../test-data/mock/sample-2';
 import { builder } from './builder';
 import { IMap, IOptions, Sitecore } from './models';
 import { writer } from './writer';
@@ -20,7 +20,7 @@ describe('Writer', () => {
     // do nothing
   });
 
-  test('Match generated C# class content', async () => {
+  test('Match generated C# class content', () => {
     const options: IOptions = {
       cwd: '', // not used
       pattern: '', // not used
@@ -29,13 +29,13 @@ describe('Writer', () => {
         'TestYo.Foundation.MyModule',
       ],
       generateFile: true,
-      targetPath: join(__dirname, '..', '..', 'tmp.models.writer-spec.cs'),
+      targetPath: join(__dirname, '..', '..', 'tmp', 'tmp.models.writer-spec.cs'),
     };
 
     const items: IMap<Sitecore.Rainbow.IItem> = simpleData.reduce(convertDataToMap, {});
 
     const templates = builder(items, options);
-    const result = await writer(templates, options);
+    const result = writer(templates, options);
 
     expect(result).toEqual(expect.stringMatching(/using Epam\.Sc\.EngX\.CodeGeneration\.Domain;/));
     expect(result).toEqual(expect.stringMatching(/\[SitecoreType\(TemplateId\=\"b716d128-a28e-4093-a917-d12a1a639ae1\"\)\]/));

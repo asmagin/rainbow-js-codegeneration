@@ -4,7 +4,7 @@ import * as Handlebars from 'handlebars';
 import { IMap, IOptions, Sitecore } from './models';
 import { source } from './template';
 
-export const writer = async (templateMap: IMap<Sitecore.CodeGeneration.ITemplate>, options: IOptions) => {
+export const writer = (templateMap: IMap<Sitecore.CodeGeneration.ITemplate>, options: IOptions) => {
   let generationTemplate = source;
 
   if (options.generationTemplatePath != null) {

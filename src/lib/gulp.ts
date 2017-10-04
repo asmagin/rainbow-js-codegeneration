@@ -5,7 +5,7 @@ import { generator } from './generator';
 import { IOptions } from './models';
 
 export const generationPlugin = () => {
-  return through.obj(async (file, encoding, callback) => {
+  return through.obj((file, encoding, callback) => {
     if (file.isNull()) {
       return callback(null, file);
     }
@@ -13,7 +13,7 @@ export const generationPlugin = () => {
     const cfg = <IOptions>require(file.path);
 
     try {
-      file.contents = new Buffer(await generator(cfg));
+      file.contents = new Buffer(generator(cfg));
       callback(null, file);
     } catch (e) {
       callback(e, null);

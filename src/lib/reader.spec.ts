@@ -13,8 +13,8 @@ describe('Reader', () => {
     // do nothing
   });
 
-  test('Find .yml files based on a pattern', async () => {
-    const files = await reader({
+  test('Find .yml files based on a pattern', () => {
+    const files = reader({
       cwd: dataPath,
       pattern,
       generateFile: false,
@@ -27,8 +27,8 @@ describe('Reader', () => {
     expect(Object.keys(files)).toHaveLength(5);
   });
 
-  test('Find .yml files based on an array of patterns', async () => {
-    const files = await reader({
+  test('Find .yml files based on an array of patterns', () => {
+    const files = reader({
       cwd: dataPath,
       pattern: [pattern, '**/serialization/*.Settings/**/*.yml'],
       generateFile: false,
@@ -41,8 +41,8 @@ describe('Reader', () => {
     expect(Object.keys(files)).toHaveLength(6);
   });
 
-  test('Find .yml files based on an array of patterns (alternative cwd & template)', async () => {
-    const files = await reader({
+  test('Find .yml files based on an array of patterns (alternative cwd & template)', () => {
+    const files = reader({
       cwd: join(dataPath, 'serialization'),
       pattern: '**/*.Templates/**/*.yml',
       generateFile: false,
@@ -55,8 +55,8 @@ describe('Reader', () => {
     expect(Object.keys(files)).toHaveLength(5);
   });
 
-  test('Read content of .yml', async () => {
-    const files = await reader({
+  test('Read content of .yml', () => {
+    const files = reader({
       cwd: dataPath,
       pattern: [pattern, '**/serialization/*.Settings/**/*.yml'],
       generateFile: false,
