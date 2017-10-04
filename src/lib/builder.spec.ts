@@ -1,13 +1,11 @@
-import { items as simpleData } from './../mock/sample-1';
-import { items as complexData } from './../mock/sample-2';
+import { items as simpleData } from '../../test-data/mock/sample-1';
+import { items as complexData } from '../../test-data/mock/sample-2';
 import { builder } from './builder';
 import { IMap, IOptions, Sitecore } from './models';
 
 const options: IOptions = {
   cwd: '', // not used
   pattern: '', // not used
-  generateFile: false,
-  targetPath: '',
 };
 
 const simpleTemplateId = 'b716d128-a28e-4093-a917-d12a1a639ae1';

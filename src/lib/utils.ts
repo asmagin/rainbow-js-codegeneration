@@ -1,4 +1,11 @@
+import * as loglevel from 'loglevel';
 import { basename } from 'path';
+
+loglevel.setLevel('info');
+
+// if (process.env.DEBUG != null || process.env.debug != null) {
+//   loglevel.setLevel('debug');
+// }
 
 const toPascalCase = (str: string): string => {
   return str
@@ -37,6 +44,7 @@ export const toPropertyType = (name: string): string => {
   switch (name.toLowerCase()) {
     case 'tristate':
       return 'TriState';
+
     case 'checkbox':
       return 'bool';
 
@@ -90,13 +98,18 @@ export const toPropertyType = (name: string): string => {
     case 'grouped droplist':
     case 'valuelookup':
       return 'string';
+
     case 'attachment':
     case 'word document':
       return 'System.IO.Stream';
+
     case 'name lookup value list':
     case 'name value list':
       return 'System.Collections.Specialized.NameValueCollection';
+
     default:
       return `object /* UNKNOWN TYPE: ${name} */`;
   }
 };
+
+export const log = loglevel;

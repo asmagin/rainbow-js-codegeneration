@@ -68,9 +68,7 @@ export interface IOptions {
   cwd: string;
   pattern: string | string[];
 
-  generateFile: boolean;
-  targetPath: string;
-  generationTemplatePath?: string;
+  templatePath?: string;
 
   Using?: string[];
 
