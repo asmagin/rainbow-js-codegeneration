@@ -108,6 +108,18 @@ namespace {{this.AsNamespace}}
 {{/each}}
 ```
 
+### Template Helpers
+`guid-b`: will convert text to UPPER CASE and wrap in `{` `}`. Could be used to emulate output of `C#` method `.ToString("B")`
+``` handlebars
+{{guid-b this.ID}}
+{{! will return "{00000000-ABCD-0000-0000-000000000000}"}}
+```
+`guid-d`: will convert text to UPPER CASE. Could be used to emulate output of `C#` method `.ToString("D")`
+``` handlebars
+{{guid-b this.ID}}
+{{! will return "00000000-ABCD-0000-0000-000000000000"}}
+```
+
 ## Gulp integration
 ### generationPlugin()
 The library provides a Gulp plugin. The plugin will generate code file for each `configuration` file detected. See example below:
