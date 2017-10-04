@@ -14,6 +14,9 @@ export const writer = async (templateMap: IMap<Sitecore.CodeGeneration.ITemplate
     }
   }
 
+  Handlebars.registerHelper('guid-b', (guid) => `{${guid.toUpperCase()}}`);
+  Handlebars.registerHelper('guid-d', (guid) => guid.toUpperCase());
+
   const template = Handlebars.compile(generationTemplate);
   const templates = Object.keys(templateMap).map(key => templateMap[key]);
 
