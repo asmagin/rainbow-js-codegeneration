@@ -1,26 +1,46 @@
 // tslint:disable:no-require-imports
 // tslint:disable:non-literal-require
+import { PluginError } from 'gulp-util';
 import * as through from 'through2';
 import { generator } from './generator';
 import { IOptions } from './models';
 
-export const generationPlugin = () => {
-  return through.obj((file, encoding, callback) => {
+const PLUGIN_NAME = 'gulp-rainbow-js-codegeneration';
+
+const contentStream = (text) => {
+  const stream = through();
+  stream.write(text);
+
+  return stream;
+};
+
+const plugin = () => {
+
+  // Creating a stream through which each file will pass
+  return through.obj((file, encoding, cb) => {
     if (file.isNull()) {
-      return callback(null, file);
+      // return empty file
+      return cb(null, file);
     }
 
     const cfg = <IOptions>require(file.path);
 
+    let content = '';
     try {
-      file.contents = new Buffer(generator(cfg));
-      callback(null, file);
+      content = generator(cfg);
     } catch (e) {
-      callback(e, null);
+      return cb(new PluginError(PLUGIN_NAME, e), null);
     }
 
-    // TSLint hack to keep signature required for gulp plugin
-    // tslint:disable-next-line:no-unused-expression
-    encoding;
+    if (file.isBuffer()) {
+      file.contents = new Buffer(content, encoding);
+    }
+    if (file.isStream()) {
+      file.contents = contentStream(content);
+    }
+
+    return cb(null, file);
   });
 };
+
+export const generationPlugin = plugin;

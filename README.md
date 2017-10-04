@@ -115,21 +115,17 @@ The library provides a Gulp plugin. The plugin will generate code file for each 
 // other imports
 var codeGen = require('rainbow-js-codegeneration').generationPlugin;
 
-// You can make module save a file by setting "generateFile" to "true" and defining "targetPath"
-gulp.task("Generate-Code", function () {
-  gulp.src('**/codegeneration.config.js', { base: "./" })
-    .pipe(codeGen())
-});
-
-// OR you can "rename" and "gulp.dest" to control location of generated file
-gulp.task("Generate-Code", function () {
+gulp.task("Generate-Code", function (callback) {
   gulp.src('**/codegeneration.config.js', { base: "./" })
     .pipe(codeGen())
     .pipe(rename(function (path) {
-      path.basename = "Models.Generated";
+      path.basename = "Templates.Generated";
       path.extname = ".cs"
     }))
     .pipe(gulp.dest('./'))
+    .on("end", function () {
+      callback();
+    });
 });
 ```
 
