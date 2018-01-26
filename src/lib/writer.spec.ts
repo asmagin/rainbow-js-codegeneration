@@ -1,4 +1,5 @@
 import { join } from 'path';
+import * as writeFile from 'write';
 import { items as simpleData } from '../../test-data/mock/sample-2';
 import { builder } from './builder';
 import { IMap, IOptions, Sitecore } from './models';
@@ -39,5 +40,7 @@ describe('Writer', () => {
     expect(result).toEqual(expect.stringMatching(/\[SitecoreType\(TemplateId\=\"b716d128-a28e-4093-a917-d12a1a639ae1\"\)\]/));
     expect(result).toEqual(expect.stringMatching(/IEnumerable\<Guid\> ListField \{get; set;\}/));
     expect(result).toEqual(expect.stringMatching(/Image Image \{get; set;\}/));
+
+    writeFile('./tmp/tmp.writer.spec.cs', result, () => null);
   });
 });
