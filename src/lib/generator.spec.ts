@@ -1,3 +1,4 @@
+import * as writeFile from 'write';
 import { join } from 'path';
 import { generator } from './generator';
 import { IOptions } from './models';
@@ -23,5 +24,7 @@ describe('Generator', () => {
     const result = generator(options);
 
     expect(result).toEqual(expect.stringMatching(/\[SitecoreType\(TemplateId="b716d128-a28e-4093-a917-d12a1a639ae1"\)\]/));
+
+    writeFile('./tmp/tmp.generator.spec.cs', result, () => null);
   });
 });

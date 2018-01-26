@@ -26,7 +26,8 @@ const buildTemplates = (
       const name = utils.getNameFromPath(items[id].Path);
 
       // init template
-      return <Sitecore.CodeGeneration.ITemplate>{
+      // const template:Sitecore.CodeGeneration.ITemplate
+      return {
         ID: id,
         OwnFields: {},
         BaseTemplates: [],
@@ -71,7 +72,7 @@ const buildTemplateFields = (
           const name = utils.getNameFromPath(item.Path);
           const fieldType = item.SharedFields.find(sharedField => sharedField.Hint === 'Type').Value;
 
-          fields[name] = <Sitecore.CodeGeneration.IField>{
+          fields[name] = {
             ID: item.ID,
             Name: name,
             AsProperty: toProperty(name),
