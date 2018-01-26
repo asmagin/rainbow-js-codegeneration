@@ -1,6 +1,6 @@
 {
   "name": "rainbow-js-codegeneration",
-  "version": "0.1.16",
+  "version": "0.1.17",
   "description": "JavaScript based code-generation for Rainbow serialization format of Sitecore items",
   "keywords": [
     "sitecore",
@@ -17,14 +17,14 @@
     "node": ">= 6.9.0"
   },
   "devDependencies": {
-    "@types/jest": "~21.1.1",
-    "@types/node": "~6.0.88",
-    "jest": "~21.2.0",
+    "@types/jest": "~22.1.0",
+    "@types/node": "~9.3.0",
+    "jest": "~22.1.4",
     "rimraf": "~2.6.2",
-    "tslint": "~5.7.0",
-    "tslint-microsoft-contrib": "~5.0.1",
-    "tsutils": "~2.9.0",
-    "typescript": "~2.5.3"
+    "tslint": "~5.9.1",
+    "tslint-microsoft-contrib": "~5.0.2",
+    "tsutils": "~2.19.1",
+    "typescript": "~2.6.2"
   },
   "scripts": {
     "clean": "rimraf coverage build tmp",
@@ -48,15 +48,15 @@
   "homepage": "https://github.com/asmagin/rainbow-js-codegeneration#readme",
   "dependencies": {
     "array-sort": "^1.0.0",
-    "fs-extra": "^4.0.2",
+    "fs-extra": "^5.0.0",
     "glob": "^7.1.2",
     "gulp-util": "^3.0.8",
     "handlebars": "^4.0.10",
-    "jest-cli": "^21.2.1",
+    "jest-cli": "^22.1.4",
     "js-yaml": "^3.10.0",
     "loglevel": "^1.5.0",
     "through2": "^2.0.3",
-    "tslib": "~1.7.1",
+    "tslib": "~1.9.0",
     "write": "^1.0.3"
   }
 }
