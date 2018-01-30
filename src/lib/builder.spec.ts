@@ -1,5 +1,6 @@
 import { items as simpleData } from '../../test-data/mock/sample-1';
 import { items as complexData } from '../../test-data/mock/sample-2';
+import { items as similarPathData } from '../../test-data/mock/sample-3';
 import { builder } from './builder';
 import { IMap, IOptions, Sitecore } from './models';
 
@@ -70,6 +71,15 @@ describe('Builder', () => {
 
   test('Should return complex template with fields', () => {
     const items: IMap<Sitecore.Rainbow.IItem> = complexData.reduce(convertDataToMap, {});
+
+    const result = builder(items, options);
+
+    expect(Object.keys(result[simpleTemplateId].OwnFields)).toHaveLength(2);
+    expect(Object.keys(result[complexTemplateId].OwnFields)).toHaveLength(4);
+  });
+
+  test('Should return complex template with fields if path are similar', () => {
+    const items: IMap<Sitecore.Rainbow.IItem> = similarPathData.reduce(convertDataToMap, {});
 
     const result = builder(items, options);
 
