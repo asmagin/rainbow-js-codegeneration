@@ -66,7 +66,7 @@ const buildTemplateFields = (
     .map(id => templates[id])
     .map((template) => {
       template.OwnFields = Object.keys(items)
-        .filter(id => items[id].Template === constants.FIELD_TEMPLATE_ID && items[id].Path.startsWith(template.Path))
+        .filter(id => items[id].Template === constants.FIELD_TEMPLATE_ID && items[id].Path.startsWith(`${template.Path}/`))
         .map(id => items[id])
         .reduce((fields, item) => {
           const name = utils.getNameFromPath(item.Path);
