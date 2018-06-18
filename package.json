@@ -1,6 +1,6 @@
 {
   "name": "rainbow-js-codegeneration",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "description": "JavaScript based code-generation for Rainbow serialization format of Sitecore items",
   "keywords": [
     "sitecore",

@@ -91,11 +91,11 @@ const buildBaseTemplates = (
   Object.keys(templates)
     .map((id) => templates[id])
     .forEach((template) => {
-      // get base templates raw field value
-      const fields = utils.defaultIfNull(items[template.ID].SharedFields, []);
-      const baseTemplate = utils.defaultIfNull(fields.find((f) => f.Hint === '__Base template'), { Value: '' });
-
-      const rawValue = baseTemplate.Value.toLowerCase()
+      const rawValue = (
+        // tslint:disable-next-line:no-object-literal-type-assertion strict-boolean-expressions
+        ((items[template.ID].SharedFields || []).find((f) => f.Hint === '__Base template') || <Sitecore.Rainbow.IField>{}).Value || ''
+      )
+        .toLowerCase()
         .replace(/[\{|\}]/g, '')
         .replace(constants.STANDARD_TEMPLATE_ID, '')
         .trim();
