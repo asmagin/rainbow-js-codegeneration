@@ -7,12 +7,21 @@ loglevel.setLevel('info');
 //   loglevel.setLevel('debug');
 // }
 
-const toPascalCase = (str: string): string => {
+export const toPascalCase = (str: string): string => {
   return str
     .replace(/(?:^\w|[A-Z]|\b\w)/g, (match) => {
       return match.toUpperCase();
     })
     .replace(/[^a-zA-Z\d]+/g, '');
+};
+
+// tslint:disable-next-line:no-any
+export const defaultIfNull = <T>(value: T, ifNull: any): T => {
+  if (value === null || value === undefined) {
+    return <T>ifNull;
+  }
+
+  return value;
 };
 
 export const toClass = (name: string): string => {
