@@ -1,5 +1,5 @@
-import * as utils from './utils';
 import * as loglevel from 'loglevel';
+import * as utils from './utils';
 
 const toNameFormatTestHelper = (func, expected) => {
   const name = func.name;
@@ -30,6 +30,7 @@ const toNameFormatTestHelper = (func, expected) => {
     const result = func(input);
     expect(result).toBe(expected);
   });
+
 };
 
 describe('Utils', () => {
@@ -111,13 +112,27 @@ describe('Utils', () => {
 
   test('Logging', () => {
 
-    const spy = jest.spyOn(loglevel, 'log');
-    utils.log.log('test');
+    const spy = jest.spyOn(loglevel, 'info');
+    utils.log.info('test');
 
     expect(spy).toHaveBeenCalled();
 
     spy.mockReset();
     spy.mockRestore();
+  });
+
+  test('defaultIfNull - not null', () => {
+    const expected = { foo: 'a' };
+    const result = utils.defaultIfNull({ foo: 'a' }, { foo: 'b' });
+
+    expect(result).toEqual(expected);
+  });
+
+  test('defaultIfNull - null', () => {
+    const expected = { foo: 'b' };
+    const result = utils.defaultIfNull(undefined, { foo: 'b' });
+
+    expect(result).toEqual(expected);
   });
 
   afterAll(() => {
