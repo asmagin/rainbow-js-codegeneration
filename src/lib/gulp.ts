@@ -20,7 +20,7 @@ const plugin = () => {
   return through.obj((file, encoding, cb) => {
     if (file.isNull()) {
       // return empty file
-      return cb(null, file);
+      return cb(undefined, file);
     }
 
     const cfg = <IOptions>require(file.path);
@@ -29,7 +29,7 @@ const plugin = () => {
     try {
       content = generator(cfg);
     } catch (e) {
-      return cb(new PluginError(PLUGIN_NAME, e), null);
+      return cb(new PluginError(PLUGIN_NAME, e), undefined);
     }
 
     if (file.isBuffer()) {
@@ -39,7 +39,7 @@ const plugin = () => {
       file.contents = contentStream(content);
     }
 
-    return cb(null, file);
+    return cb(undefined, file);
   });
 };
 

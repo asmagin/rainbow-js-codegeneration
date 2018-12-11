@@ -12,6 +12,8 @@
 
 # Rainbow JS CodeGeneration
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/asmagin/rainbow-js-codegeneration.svg)](https://greenkeeper.io/)
+
 ## Installation
 
 ```
