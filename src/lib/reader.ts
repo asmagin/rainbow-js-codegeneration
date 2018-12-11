@@ -29,6 +29,7 @@ export const reader = (options: IOptions): IMap<Sitecore.Rainbow.IItem> => {
 
     paths.reduce(
       (data, path) => {
+        //tslint:disable-next-line:non-literal-fs-path
         const item: Sitecore.Rainbow.IItem = jsYaml.safeLoad(fs.readFileSync(join(options.cwd, path), 'utf8'));
         data[item.ID] = item;
 

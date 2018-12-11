@@ -103,7 +103,7 @@ const buildBaseTemplates = (
       const baseTemplatesIds = rawValue.split('\n');
 
       baseTemplatesIds
-        .filter((id) => templates[id] != null && templates[id] !== undefined)
+        .filter((id) => templates[id] !== undefined && templates[id] !== undefined)
         .map((id) => template.BaseTemplates.push(templates[id]));
     });
 
@@ -126,7 +126,9 @@ const getTemplateInheritedFields = (template: Sitecore.CodeGeneration.ITemplate)
   }, {});
 
   // remove keys that exists in own fields already
-  Object.keys(template.OwnFields).forEach((key) => delete inherited[key]);
+  Object.keys(template.OwnFields)
+    // tslint:disable-next-line:no-dynamic-delete
+    .forEach((key) => delete inherited[key]);
 
   template.InheritedFields = inherited;
 
@@ -143,7 +145,8 @@ const buildTemplatesInheritedFields = (templates: IMap<Sitecore.CodeGeneration.I
     .map((id) => templates[id])
     .map((template) => {
       const fields = { ...template.InheritedFields, ...template.OwnFields };
-      template.Fields = Object.keys(fields).map((id) => fields[id]);
+      template.Fields = Object.keys(fields)
+        .map((id) => fields[id]);
     });
 
   return templates;

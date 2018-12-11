@@ -8,9 +8,10 @@ import { source } from './template';
 export const writer = (templateMap: IMap<Sitecore.CodeGeneration.ITemplate>, options: IOptions) => {
   let generationTemplate = source;
 
-  if (options.templatePath != null) {
+  if (options.templatePath !== undefined) {
+    //tslint:disable-next-line:non-literal-fs-path
     const fileContent = fs.readFileSync(options.templatePath, 'utf-8');
-    if (fileContent != null) {
+    if (fileContent !== undefined) {
       generationTemplate = fileContent;
     }
   }
