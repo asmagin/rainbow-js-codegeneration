@@ -19,7 +19,7 @@
   "devDependencies": {
     "@types/jest": "^23.1.0",
     "@types/loglevel": "^1.5.3",
-    "@types/node": "^10.3.3",
+    "@types/node": "^11.9.5",
     "jest": "^23.1.0",
     "rimraf": "^2.6.2",
     "tslint": "^5.10.0",
